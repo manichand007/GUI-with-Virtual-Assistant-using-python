@@ -1,34 +1,60 @@
 # GUI-with-Virtual-Assistant-using-python
 
+#Modules used in this project
+
 import speech_recognition as srt
+
 import pyttsx3
+
 import pywhatkit
+
 import time
+
 from time import ctime
+
 import webbrowser
+
 import playsound
+
 import os
+
 import random
+
 from gtts import gTTS
+
 from tkinter import *
+
 from PIL import ImageTk, Image
+
 import wikipedia
+
 import datetime
+
 import pyjokes
 
+
+# Voice Recognizer
 print('Say something...')
+
 r = srt.Recognizer()
+
 speaker = pyttsx3.init()
 
+# Microphone access
 
 def record_audio(ask=False):
-    # user voice record
 
     with srt.Microphone() as source:
+    
         if ask:
+        
             lee_voice(ask)
+            
         audio = r.listen(source)
+        
         voice_data = ''
+        
+# Exception Handling        
         try:
             voice_data = r.recognize_google(audio)
             print('Recognizer voice :' + voice_data)
@@ -36,8 +62,6 @@ def record_audio(ask=False):
             #print('Oops something went Wrong')
             lee_voice('Oops something went Wrong')
         return voice_data
-
-
 def lee_voice(audio_string):
     # Play audio text to voice
     tts = gTTS(text=audio_string, lang='en')
@@ -48,9 +72,9 @@ def lee_voice(audio_string):
     print(audio_string)
     os.remove(audio_file)
 
-
+# GUI of Virtual Assistant
 class Widget:
-    # GUI OF VIRTUAL ASSISTANT AND COMMANDS GIVEN
+  
     def _init_(self):
         root = Tk()
         root.title('PSPK')
@@ -73,9 +97,10 @@ class Widget:
 
         lee_voice('hai ,How can i help you...?')
         root.mainloop()
-
+        
+# BUTTON CALLING
     def clicked(self):
-        # BUTTON CALLING
+        
 
         print("working...")
 
@@ -149,14 +174,19 @@ class Widget:
             lee_voice("Say the command again")
 
 def respond():
+
     pass
     
-if __name__ == '__main__':
+if __ _name_ __ == '__ _main_ __':
+
     widget = Widget()
 
 time.sleep(1)
+
 while 1:
+
     voice_data = record_audio()
+    
     respond(voice_data)
 
 speaker.runAndWait()
